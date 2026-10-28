@@ -1,5 +1,7 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
+/* 兜底：hidden 属性必须生效（弹窗等用 hidden 控制显隐，防止被 display 规则覆盖） */
+[hidden]{display:none!important}
 html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font-family:'Noto Sans SC',sans-serif;min-height:100vh;min-height:100dvh;overflow-x:hidden;}
 .bg{position:fixed;inset:0;z-index:0;overflow:hidden}
