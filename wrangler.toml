@@ -1,0 +1,9 @@
+name = "qifu-nav"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "public"
+
+# KV 绑定：部署前先创建命名空间并替换 id
+# 创建命令: npx wrangler kv namespace create NAV_KV
+[[kv_namespaces]]
+binding = "NAV_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"

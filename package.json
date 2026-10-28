@@ -1,0 +1,14 @@
+{
+  "name": "qifu-nav-cf",
+  "version": "1.0.0",
+  "private": true,
+  "description": "祈福导航 · Cloudflare Pages + KV 版（前台 + 管理后台，无需数据库与服务器）",
+  "type": "module",
+  "scripts": {
+    "test:api": "node test/run.mjs",
+    "test:ui": "node test/ui.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

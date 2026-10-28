@@ -1,0 +1,97 @@
+/* 祈福导航 CF 版 —— 管理后台样式（浅色） */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC',system-ui,sans-serif;background:#f3f5f9;color:#334155;font-size:14px}
+button{font-family:inherit}
+input,select,textarea{font-family:inherit;font-size:13px}
+
+/* ---------- 登录 ---------- */
+.login-layer{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#0b1740,#1e3a8a 55%,#0b1740)}
+.login-card{width:min(380px,92vw);background:#fff;border-radius:14px;padding:34px 30px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.login-card h1{font-size:20px;font-weight:600;color:#1e293b}
+.login-card>p{color:#94a3b8;font-size:12px;margin:6px 0 22px}
+.login-card label{display:block;font-size:12px;color:#64748b;margin-bottom:14px;font-weight:500}
+.login-card input{display:block;width:100%;height:40px;margin-top:6px;padding:0 12px;border:1px solid #d7dee8;border-radius:8px;outline:0;transition:border-color .15s,box-shadow .15s}
+.login-card input:focus{border-color:#5b78ef;box-shadow:0 0 0 3px rgba(91,120,239,.15)}
+.login-err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:12px;border-radius:8px;padding:8px 12px;margin-bottom:14px}
+
+/* ---------- 布局 ---------- */
+.app{display:flex;min-height:100vh}
+.sidebar{width:228px;flex-shrink:0;background:#fff;border-right:1px solid #e6ebf2;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:9px;padding:18px 20px 16px;font-size:15px;font-weight:600;color:#1e293b;border-bottom:1px solid #eef2f7}
+.brand-ico{font-size:18px}
+#menu{flex:1;overflow-y:auto;padding:10px 12px}
+.menu-group{margin-bottom:2px}
+.menu-group-title{display:flex;align-items:center;gap:9px;width:100%;padding:10px 10px;border:0;background:transparent;border-radius:8px;color:#475569;font-size:13.5px;font-weight:500;cursor:pointer;text-align:left;transition:background .15s}
+.menu-group-title:hover{background:#f1f5f9}
+.menu-group-title .arrow{margin-left:auto;font-size:10px;color:#94a3b8;transition:transform .2s}
+.menu-group.open .menu-group-title .arrow{transform:rotate(180deg)}
+.menu-group-items{display:none;padding:2px 0 4px}
+.menu-group.open .menu-group-items{display:block}
+.menu-item{display:block;width:100%;padding:8px 10px 8px 30px;border:0;background:transparent;border-radius:7px;color:#64748b;font-size:13px;cursor:pointer;text-align:left;transition:background .15s,color .15s}
+.menu-item:hover{background:#f1f5f9;color:#1e293b}
+.menu-item.active{background:#eef2ff;color:#4358d8;font-weight:600}
+.sidebar-foot{padding:14px;border-top:1px solid #eef2f7}
+.main{flex:1;padding:26px 30px;max-width:1060px}
+
+/* ---------- 通用组件 ---------- */
+.page-title{font-size:19px;font-weight:600;color:#1e293b;margin-bottom:4px}
+.page-sub{color:#94a3b8;font-size:12.5px;margin-bottom:22px}
+.card-box{background:#fff;border:1px solid #e6ebf2;border-radius:12px;padding:20px 22px;margin-bottom:18px}
+.card-box h3{font-size:14.5px;font-weight:600;color:#1e293b;margin-bottom:4px}
+.card-box .hint{font-size:12px;color:#94a3b8;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.form-grid .full{grid-column:1/-1}
+.field label{display:block;font-size:12px;color:#64748b;font-weight:500;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;min-height:38px;padding:7px 11px;border:1px solid #d7dee8;border-radius:8px;outline:0;background:#fff;transition:border-color .15s,box-shadow .15s}
+.field textarea{min-height:64px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#5b78ef;box-shadow:0 0 0 3px rgba(91,120,239,.13)}
+.switch-row{display:flex;align-items:center;gap:10px;padding:6px 0}
+.switch-row input[type=checkbox]{width:16px;height:16px;accent-color:#5b78ef}
+.switch-row span{font-size:13px;color:#475569}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 18px;border-radius:8px;border:1px solid transparent;font-size:13px;font-weight:600;cursor:pointer;transition:.15s}
+.btn-primary{background:#5b78ef;color:#fff}
+.btn-primary:hover{background:#4965d8}
+.btn-ghost{background:transparent;border-color:#d7dee8;color:#64748b}
+.btn-ghost:hover{background:#f1f5f9;color:#1e293b}
+.btn-danger{background:#fee2e2;color:#dc2626;border-color:#fecaca}
+.btn-danger:hover{background:#fecaca}
+.btn-sm{height:30px;padding:0 12px;font-size:12px;border-radius:7px}
+.btn-block{width:100%}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+
+/* 统计卡片 */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:18px}
+.stat-card{background:#fff;border:1px solid #e6ebf2;border-radius:12px;padding:18px}
+.stat-card .num{font-size:26px;font-weight:600;color:#1e293b;font-variant-numeric:tabular-nums}
+.stat-card .lbl{font-size:12px;color:#94a3b8;margin-top:4px}
+
+/* 表格 */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{ text-align:left;font-size:11.5px;color:#94a3b8;font-weight:600;padding:8px 10px;border-bottom:1px solid #eef2f7;white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+td input,td select{min-height:32px;padding:4px 8px;border:1px solid #d7dee8;border-radius:6px;width:100%;min-width:90px}
+td .url-cell{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600}
+.tag.pending{background:#fef3c7;color:#b45309}
+.tag.approved{background:#dcfce7;color:#15803d}
+.tag.rejected{background:#fee2e2;color:#b91c1c}
+.row-actions{display:flex;gap:6px;justify-content:flex-end}
+.empty-tip{text-align:center;color:#94a3b8;padding:26px 0;font-size:13px}
+
+/* 广告位卡片 */
+.ad-slot{border:1px dashed #d7dee8;border-radius:10px;padding:14px;margin-bottom:12px}
+.ad-slot h4{font-size:13px;color:#475569;margin-bottom:10px}
+
+/* toast */
+.toast{position:fixed;top:22px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;font-size:13px;padding:10px 20px;border-radius:9px;box-shadow:0 12px 40px rgba(0,0,0,.25);z-index:999}
+.toast.err{background:#b91c1c}
+.toast.ok{background:#15803d}
+
+@media(max-width:860px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;height:auto;position:static}
+  #menu{max-height:260px}
+  .main{padding:18px 14px}
+  .form-grid{grid-template-columns:1fr}
+}

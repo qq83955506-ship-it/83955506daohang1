@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>祈福导航 · 管理后台</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body>
+<!-- 登录层 -->
+<div id="loginLayer" class="login-layer" hidden>
+  <form id="loginForm" class="login-card">
+    <h1>祈福导航系统</h1>
+    <p>管理后台登录</p>
+    <label>账号<input type="text" id="loginUser" autocomplete="username" required></label>
+    <label>密码<input type="password" id="loginPass" autocomplete="current-password" required></label>
+    <div id="loginErr" class="login-err" hidden></div>
+    <button type="submit" class="btn btn-primary btn-block" id="loginBtn">进入后台</button>
+  </form>
+</div>
+
+<!-- 主界面 -->
+<div id="appLayer" class="app" hidden>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-ico">🍃</span><span>祈福导航系统</span></div>
+    <nav id="menu"></nav>
+    <div class="sidebar-foot">
+      <button id="logoutBtn" class="btn btn-ghost btn-block">退出登录</button>
+    </div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<script src="/assets/admin.js"></script>
+</body>
+</html>

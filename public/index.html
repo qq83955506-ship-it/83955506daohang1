@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="//favicon.im">
+<link rel="preconnect" href="https://favicon.im" crossorigin>
+<link rel="dns-prefetch" href="//www.google.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<title>祈福导航 - 导航从这里开始</title>
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="preload" as="image" href="/images/moren.webp" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="/assets/app.css">
+<script>
+/* 图标加载降级链：站点 favicon.ico → favicon.im → Google S2，全部失败则显示首字占位 */
+(function(){
+  function iconSources(image){try{return JSON.parse(image.getAttribute('data-icon-sources')||'[]');}catch(e){return [];}}
+  function clearIconTimer(image){if(image._qifuIconTimer){clearTimeout(image._qifuIconTimer);image._qifuIconTimer=null;}}
+  window.qifuSiteIconArm=function(image){
+    clearIconTimer(image);
+    if(image.getAttribute('data-icon-ready')==='1'||image.classList.contains('is-failed'))return;
+    image._qifuIconTimer=setTimeout(function(){qifuSiteIconNext(image);},900);
+  };
+  window.qifuSiteIconLoaded=function(image){
+    if(image.naturalWidth<12||image.naturalHeight<12){qifuSiteIconNext(image);return;}
+    clearIconTimer(image);
+    image.setAttribute('data-icon-ready','1');
+    image.classList.add('is-loaded');
+  };
+  window.qifuSiteIconNext=function(image){
+    clearIconTimer(image);
+    var sources=iconSources(image),index=parseInt(image.getAttribute('data-icon-index')||'0',10)+1;
+    image.classList.remove('is-loaded');
+    image.removeAttribute('data-icon-ready');
+    if(index>=sources.length){image.classList.add('is-failed');image.removeAttribute('src');return;}
+    image.setAttribute('data-icon-index',String(index));
+    image.src=sources[index];
+    qifuSiteIconArm(image);
+  };
+})();
+</script>
+</head>
+<body>
+<div class="bg"></div>
+<div class="overlay"></div>
+<div class="wrap">
+
+  <nav class="bar">
+    <div class="bar-actions">
+      <button class="bar-btn" id="lkmBtn" type="button" hidden>🔗 提交友联</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div id="clock" class="digital">00:00:00</div>
+    <div id="date"></div>
+    <div class="search">
+      <form onsubmit="doSearch();return false" style="display:flex;width:100%;align-items:center;">
+        <div class="eng engine-picker" id="enginePicker">
+          <button class="engine-current" type="button" id="engineBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="engine-badge" id="engineBadge">百</span>
+            <span id="engineLabel">百度</span>
+            <span class="engine-arrow"></span>
+          </button>
+          <div class="engine-menu" id="engineMenu"></div>
+          <input type="hidden" id="eng" value="">
+        </div>
+        <input class="sinp" id="sinp" type="text" placeholder="搜索网页、资源、工具..." autocomplete="off">
+        <button class="sbtn" type="submit">⌕</button>
+      </form>
+    </div>
+    <div class="site-search-state" id="siteSearchState"></div>
+    <div class="tags" id="quickTags"></div>
+  </div>
+
+  <div id="adGrid" class="ad-grid" hidden></div>
+  <div id="adLeft" class="ad-side ad-side-left" hidden></div>
+  <div id="adRight" class="ad-side ad-side-right" hidden></div>
+
+  <div id="sections"></div>
+
+  <section class="online-stats" aria-label="网站在线统计" id="onlineStats" hidden>
+    <div class="online-stats-row" id="statsRow"></div>
+  </section>
+
+  <footer class="foot" id="pageFooter">
+    <div class="foot-row" id="footRow"><span class="foot-item">祈福导航 · 精选优质资源</span></div>
+  </footer>
+</div>
+
+<!-- 友链申请弹窗 -->
+<div id="lkm-wrap" role="dialog" aria-modal="true" aria-labelledby="lkmTitle">
+  <div class="lkm-box">
+    <div class="lkm-hd">
+      <span class="lkm-head-icon" aria-hidden="true"><img src="/images/default-logo.webp" alt=""></span>
+      <div class="lkm-title">
+        <h3 id="lkmTitle">提交友链申请</h3>
+        <p>先填写网址，点击“获取信息”自动读取站点资料</p>
+      </div>
+      <button class="lkm-close" id="lkmCloseBtn" type="button" aria-label="关闭友链申请弹窗">&times;</button>
+    </div>
+    <div class="lkm-bd" id="lkmFormBd">
+      <div class="lkm-fields">
+        <div class="lkm-row lkm-row-wide">
+          <label>网站地址</label>
+          <div class="lkm-url-line">
+            <input type="url" id="lkmUrl" placeholder="输入域名或完整 URL" autocomplete="off" inputmode="url">
+            <button class="lkm-fetch" id="lkmFetchMeta" type="button">获取信息</button>
+          </div>
+          <div class="lkm-meta-status" id="lkmMetaStatus" aria-live="polite"></div>
+        </div>
+        <div class="lkm-row">
+          <label>网站名称</label>
+          <input type="text" id="lkmName" placeholder="等待自动获取" autocomplete="off">
+        </div>
+        <div class="lkm-row">
+          <label>申请分类</label>
+          <select id="lkmCat"></select>
+        </div>
+        <div class="lkm-row lkm-row-wide">
+          <label>网站描述</label>
+          <textarea id="lkmDesc" placeholder="等待自动获取，获取后仍可修改" autocomplete="off"></textarea>
+        </div>
+        <div class="lkm-row lkm-row-wide">
+          <label>通知邮箱 <span class="lkm-optional">选填 · 仅用于审核结果</span></label>
+          <input type="email" id="lkmEmail" placeholder="name@example.com" autocomplete="off">
+        </div>
+      </div>
+      <div class="lkm-tip" id="lkmTip"></div>
+      <div class="lkm-form-foot">
+        <span class="lkm-form-note">信息获取失败时可以手动填写</span>
+        <button class="lkm-submit" id="lkmSubmit">确认并提交</button>
+      </div>
+    </div>
+    <div class="lkm-done" id="lkmDoneBd" style="display:none;" aria-live="polite">
+      <div class="lkm-success-brand" aria-hidden="true"><img src="/images/default-logo.webp" alt=""></div>
+      <div class="lkm-done-status" id="lkmDoneStatus">申请已提交</div>
+      <h4 id="lkmDoneTitle">友链申请提交成功</h4>
+      <p id="lkmDoneMessage">站点资料已经进入审核列表，管理员处理后会通过您填写的邮箱发送结果。</p>
+      <div class="lkm-done-next"><span>接下来</span><b id="lkmDoneNext">请等待管理员审核</b></div>
+      <div class="lkm-done-actions"><button class="lkm-done-close" id="lkmDoneCloseBtn" type="button">返回首页</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>
