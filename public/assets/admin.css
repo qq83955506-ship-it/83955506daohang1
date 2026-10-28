@@ -1,5 +1,7 @@
 /* 祈福导航 CF 版 —— 管理后台样式（浅色） */
 *{box-sizing:border-box;margin:0;padding:0}
+/* 兜底：hidden 属性必须生效，防止下面 .login-layer 等规则用 display 覆盖它 */
+[hidden]{display:none!important}
 body{font-family:'Noto Sans SC',system-ui,sans-serif;background:#f3f5f9;color:#334155;font-size:14px}
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;font-size:13px}
